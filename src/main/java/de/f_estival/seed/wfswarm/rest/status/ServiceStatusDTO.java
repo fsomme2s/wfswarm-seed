@@ -1,4 +1,4 @@
-package de.festival.seed.wfswarm.rest.status;
+package de.f_estival.seed.wfswarm.rest.status;
 
 import java.time.LocalDateTime;
 

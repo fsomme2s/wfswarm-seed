@@ -1,8 +1,8 @@
-package de.festival.seed.wfswarm.rest.common;
+package de.f_estival.seed.wfswarm.rest.common;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import de.festival.seed.wfswarm.xcon.logging.LogTags;
+import de.f_estival.seed.wfswarm.xcon.logging.LogTags;
 import org.slf4j.Logger;
 
 import javax.annotation.PostConstruct;

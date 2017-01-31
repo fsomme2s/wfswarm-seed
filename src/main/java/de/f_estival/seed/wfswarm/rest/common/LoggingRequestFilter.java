@@ -1,4 +1,4 @@
-package de.festival.seed.wfswarm.rest.common;
+package de.f_estival.seed.wfswarm.rest.common;
 
 
 
