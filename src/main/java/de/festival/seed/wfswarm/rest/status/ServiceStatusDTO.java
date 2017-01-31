@@ -7,6 +7,10 @@ class ServiceStatusDTO {
 
     private String generalStatus;
 
+    public ServiceStatusDTO(String generalStatus) {
+        this.generalStatus = generalStatus;
+    }
+
     public LocalDateTime getTimestamp() {
         return timestamp;
     }

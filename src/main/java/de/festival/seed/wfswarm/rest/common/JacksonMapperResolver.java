@@ -2,7 +2,12 @@ package de.festival.seed.wfswarm.rest.common;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import de.festival.seed.wfswarm.xcon.logging.LogTags;
+import org.slf4j.Logger;
 
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.ws.rs.ext.ContextResolver;
 import javax.ws.rs.ext.Provider;
 
@@ -12,21 +17,26 @@ import javax.ws.rs.ext.Provider;
  * <b>Use this to do configure the ObjectMapper for all resources.</b>
  */
 @Provider
+@ApplicationScoped
 public class JacksonMapperResolver implements ContextResolver<ObjectMapper> {
 
-//    @Inject
-//    private Logger logger;
+    @Inject
+    protected Logger logger;
 
-    private final ObjectMapper mapper;
+    private ObjectMapper mapper;
 
-    public JacksonMapperResolver() {
-        /* Creating the ObjectMapper inside the constructor; this way, it will be instantiated and configured
-         * exactly one time on application startup.
+    @PostConstruct
+    protected void init() {
+        /* Creating the ObjectMapper inside postconstruct; this way, it will be instantiated and configured
+         * exactly one time, when the first resource is loaded.
+         * ! Not using the constructor as we don't have dependencies injected there !
          */
-//        logger.info("Creating configured Jackson Object Mapper.");
-        System.out.println("Creating configured Jackson Object Mapper.");
-        this.mapper = new ObjectMapper();
+        logger.info(LogTags.TECH + "Creating configured Jackson Object Mapper.");
+        createObjectMapper();
+    }
 
+    private void createObjectMapper() {
+        this.mapper = new ObjectMapper();
 
         //find the JSR310 data type module of jackson (marshalling Java 8 DateTime API):
         mapper.findAndRegisterModules();
